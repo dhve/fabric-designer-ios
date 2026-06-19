@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B0A0000000000000A0000001 /* FabricDesignerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000001 /* FabricDesignerApp.swift */; };
+		B0A0000000000000A0000002 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000002 /* AppState.swift */; };
+		B0A0000000000000A0000003 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000003 /* RootView.swift */; };
+		B0A0000000000000A0000004 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000004 /* Theme.swift */; };
+		B0A0000000000000A0000005 /* HUDComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000005 /* HUDComponents.swift */; };
+		B0A0000000000000A0000006 /* FabricType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000006 /* FabricType.swift */; };
+		B0A0000000000000A0000007 /* Garment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000007 /* Garment.swift */; };
+		B0A0000000000000A0000008 /* BodyMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000008 /* BodyMeasurements.swift */; };
+		B0A0000000000000A0000009 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000009 /* Order.swift */; };
+		B0A0000000000000A0000010 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000010 /* Catalog.swift */; };
+		B0A0000000000000A0000011 /* SwatchCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000011 /* SwatchCatalog.swift */; };
+		B0A0000000000000A0000012 /* WardrobeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000012 /* WardrobeModel.swift */; };
+		B0A0000000000000A0000013 /* WardrobeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000013 /* WardrobeStore.swift */; };
+		B0A0000000000000A0000014 /* WardrobeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000014 /* WardrobeView.swift */; };
+		B0A0000000000000A0000015 /* ColorHarmony.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000015 /* ColorHarmony.swift */; };
+		B0A0000000000000A0000016 /* FabricVibes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000016 /* FabricVibes.swift */; };
+		B0A0000000000000A0000017 /* OutfitScorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000017 /* OutfitScorer.swift */; };
+		B0A0000000000000A0000018 /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000018 /* HistoryStore.swift */; };
+		B0A0000000000000A0000019 /* OutfitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000019 /* OutfitEngine.swift */; };
+		B0A0000000000000A0000020 /* BodyScanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000020 /* BodyScanCoordinator.swift */; };
+		B0A0000000000000A0000021 /* BodyScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000021 /* BodyScanView.swift */; };
+		B0A0000000000000A0000022 /* MeasurementExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000022 /* MeasurementExtractor.swift */; };
+		B0A0000000000000A0000023 /* ScanResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000023 /* ScanResultsView.swift */; };
+		B0A0000000000000A0000024 /* ScanIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000024 /* ScanIntroView.swift */; };
+		B0A0000000000000A0000025 /* AvatarMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000025 /* AvatarMesh.swift */; };
+		B0A0000000000000A0000026 /* FabricMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000026 /* FabricMaterial.swift */; };
+		B0A0000000000000A0000027 /* AvatarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000027 /* AvatarScene.swift */; };
+		B0A0000000000000A0000028 /* AvatarRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000028 /* AvatarRenderer.swift */; };
+		B0A0000000000000A0000029 /* DesignerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000029 /* DesignerView.swift */; };
+		B0A0000000000000A0000030 /* GarmentRail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000030 /* GarmentRail.swift */; };
+		B0A0000000000000A0000031 /* FabricSwatchGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000031 /* FabricSwatchGrid.swift */; };
+		B0A0000000000000A0000032 /* BeforeAfterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000032 /* BeforeAfterView.swift */; };
+		B0A0000000000000A0000033 /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000033 /* PhotoCaptureView.swift */; };
+		B0A0000000000000A0000034 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000034 /* CheckoutView.swift */; };
+		B0A0000000000000A0000035 /* PaymentMethodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000035 /* PaymentMethodPicker.swift */; };
+		B0C0000000000000C0000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0C0000000000000C0000003 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F0A0000000000000A0000001 /* FabricDesignerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricDesignerApp.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000002 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000003 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000004 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000005 /* HUDComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDComponents.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000006 /* FabricType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricType.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000007 /* Garment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Garment.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000008 /* BodyMeasurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyMeasurements.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000009 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000010 /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000011 /* SwatchCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwatchCatalog.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000012 /* WardrobeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeModel.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000013 /* WardrobeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeStore.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000014 /* WardrobeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeView.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000015 /* ColorHarmony.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHarmony.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000016 /* FabricVibes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricVibes.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000017 /* OutfitScorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitScorer.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000018 /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStore.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000019 /* OutfitEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitEngine.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000020 /* BodyScanCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyScanCoordinator.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000021 /* BodyScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyScanView.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000022 /* MeasurementExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementExtractor.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000023 /* ScanResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultsView.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000024 /* ScanIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanIntroView.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000025 /* AvatarMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarMesh.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000026 /* FabricMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricMaterial.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000027 /* AvatarScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarScene.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000028 /* AvatarRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarRenderer.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000029 /* DesignerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerView.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000030 /* GarmentRail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarmentRail.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000031 /* FabricSwatchGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabricSwatchGrid.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000032 /* BeforeAfterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeAfterView.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000033 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000034 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000035 /* PaymentMethodPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodPicker.swift; sourceTree = "<group>"; };
+		F0C0000000000000C0000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0C0000000000000C0000002 /* FabricDesigner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FabricDesigner.entitlements; sourceTree = "<group>"; };
+		F0C0000000000000C0000003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0D0000000000000D0000001 /* FabricDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FabricDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E0F0000000000000F0000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E0G0000000000000G0000001 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E0G0000000000000G0000002 /* FabricDesigner */,
+				E0G0000000000000G0000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G0000002 /* FabricDesigner */ = {
+			isa = PBXGroup;
+			children = (
+				E0G0000000000000G0000004 /* App */,
+				E0G0000000000000G0000005 /* DesignSystem */,
+				E0G0000000000000G0000006 /* Models */,
+				E0G0000000000000G0000007 /* Wardrobe */,
+				E0G0000000000000G0000008 /* OutfitEngine */,
+				E0G0000000000000G0000009 /* LiDARScan */,
+				E0G0000000000000G000000A /* Designer */,
+				E0G0000000000000G000000B /* Photos */,
+				E0G0000000000000G000000C /* Checkout */,
+				E0G0000000000000G000000D /* Resources */,
+			);
+			path = FabricDesigner;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G0000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F0D0000000000000D0000001 /* FabricDesigner.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G0000004 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F0A0000000000000A0000001 /* FabricDesignerApp.swift */,
+				F0A0000000000000A0000002 /* AppState.swift */,
+				F0A0000000000000A0000003 /* RootView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G0000005 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				F0A0000000000000A0000004 /* Theme.swift */,
+				F0A0000000000000A0000005 /* HUDComponents.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G0000006 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F0A0000000000000A0000006 /* FabricType.swift */,
+				F0A0000000000000A0000007 /* Garment.swift */,
+				F0A0000000000000A0000008 /* BodyMeasurements.swift */,
+				F0A0000000000000A0000009 /* Order.swift */,
+				F0A0000000000000A0000010 /* Catalog.swift */,
+				F0A0000000000000A0000011 /* SwatchCatalog.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G0000007 /* Wardrobe */ = {
+			isa = PBXGroup;
+			children = (
+				F0A0000000000000A0000012 /* WardrobeModel.swift */,
+				F0A0000000000000A0000013 /* WardrobeStore.swift */,
+				F0A0000000000000A0000014 /* WardrobeView.swift */,
+			);
+			path = Wardrobe;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G0000008 /* OutfitEngine */ = {
+			isa = PBXGroup;
+			children = (
+				F0A0000000000000A0000015 /* ColorHarmony.swift */,
+				F0A0000000000000A0000016 /* FabricVibes.swift */,
+				F0A0000000000000A0000017 /* OutfitScorer.swift */,
+				F0A0000000000000A0000018 /* HistoryStore.swift */,
+				F0A0000000000000A0000019 /* OutfitEngine.swift */,
+			);
+			path = OutfitEngine;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G0000009 /* LiDARScan */ = {
+			isa = PBXGroup;
+			children = (
+				F0A0000000000000A0000020 /* BodyScanCoordinator.swift */,
+				F0A0000000000000A0000021 /* BodyScanView.swift */,
+				F0A0000000000000A0000022 /* MeasurementExtractor.swift */,
+				F0A0000000000000A0000023 /* ScanResultsView.swift */,
+				F0A0000000000000A0000024 /* ScanIntroView.swift */,
+			);
+			path = LiDARScan;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G000000A /* Designer */ = {
+			isa = PBXGroup;
+			children = (
+				F0A0000000000000A0000025 /* AvatarMesh.swift */,
+				F0A0000000000000A0000026 /* FabricMaterial.swift */,
+				F0A0000000000000A0000027 /* AvatarScene.swift */,
+				F0A0000000000000A0000028 /* AvatarRenderer.swift */,
+				F0A0000000000000A0000029 /* DesignerView.swift */,
+				F0A0000000000000A0000030 /* GarmentRail.swift */,
+				F0A0000000000000A0000031 /* FabricSwatchGrid.swift */,
+				F0A0000000000000A0000032 /* BeforeAfterView.swift */,
+			);
+			path = Designer;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G000000B /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				F0A0000000000000A0000033 /* PhotoCaptureView.swift */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G000000C /* Checkout */ = {
+			isa = PBXGroup;
+			children = (
+				F0A0000000000000A0000034 /* CheckoutView.swift */,
+				F0A0000000000000A0000035 /* PaymentMethodPicker.swift */,
+			);
+			path = Checkout;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G000000D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F0C0000000000000C0000001 /* Info.plist */,
+				F0C0000000000000C0000002 /* FabricDesigner.entitlements */,
+				F0C0000000000000C0000003 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E0T0000000000000T0000001 /* FabricDesigner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0L0000000000000L0000002 /* Build configuration list for PBXNativeTarget "FabricDesigner" */;
+			buildPhases = (
+				E0P0000000000000P0000001 /* Sources */,
+				E0F0000000000000F0000001 /* Frameworks */,
+				E0P0000000000000P0000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FabricDesigner;
+			productName = FabricDesigner;
+			productReference = F0D0000000000000D0000001 /* FabricDesigner.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E0J0000000000000J0000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					E0T0000000000000T0000001 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = E0L0000000000000L0000001 /* Build configuration list for PBXProject "FabricDesigner" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E0G0000000000000G0000001;
+			productRefGroup = E0G0000000000000G0000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E0T0000000000000T0000001 /* FabricDesigner */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E0P0000000000000P0000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0C0000000000000C0000003 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E0P0000000000000P0000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0A0000000000000A0000001 /* FabricDesignerApp.swift in Sources */,
+				B0A0000000000000A0000002 /* AppState.swift in Sources */,
+				B0A0000000000000A0000003 /* RootView.swift in Sources */,
+				B0A0000000000000A0000004 /* Theme.swift in Sources */,
+				B0A0000000000000A0000005 /* HUDComponents.swift in Sources */,
+				B0A0000000000000A0000006 /* FabricType.swift in Sources */,
+				B0A0000000000000A0000007 /* Garment.swift in Sources */,
+				B0A0000000000000A0000008 /* BodyMeasurements.swift in Sources */,
+				B0A0000000000000A0000009 /* Order.swift in Sources */,
+				B0A0000000000000A0000010 /* Catalog.swift in Sources */,
+				B0A0000000000000A0000011 /* SwatchCatalog.swift in Sources */,
+				B0A0000000000000A0000012 /* WardrobeModel.swift in Sources */,
+				B0A0000000000000A0000013 /* WardrobeStore.swift in Sources */,
+				B0A0000000000000A0000014 /* WardrobeView.swift in Sources */,
+				B0A0000000000000A0000015 /* ColorHarmony.swift in Sources */,
+				B0A0000000000000A0000016 /* FabricVibes.swift in Sources */,
+				B0A0000000000000A0000017 /* OutfitScorer.swift in Sources */,
+				B0A0000000000000A0000018 /* HistoryStore.swift in Sources */,
+				B0A0000000000000A0000019 /* OutfitEngine.swift in Sources */,
+				B0A0000000000000A0000020 /* BodyScanCoordinator.swift in Sources */,
+				B0A0000000000000A0000021 /* BodyScanView.swift in Sources */,
+				B0A0000000000000A0000022 /* MeasurementExtractor.swift in Sources */,
+				B0A0000000000000A0000023 /* ScanResultsView.swift in Sources */,
+				B0A0000000000000A0000024 /* ScanIntroView.swift in Sources */,
+				B0A0000000000000A0000025 /* AvatarMesh.swift in Sources */,
+				B0A0000000000000A0000026 /* FabricMaterial.swift in Sources */,
+				B0A0000000000000A0000027 /* AvatarScene.swift in Sources */,
+				B0A0000000000000A0000028 /* AvatarRenderer.swift in Sources */,
+				B0A0000000000000A0000029 /* DesignerView.swift in Sources */,
+				B0A0000000000000A0000030 /* GarmentRail.swift in Sources */,
+				B0A0000000000000A0000031 /* FabricSwatchGrid.swift in Sources */,
+				B0A0000000000000A0000032 /* BeforeAfterView.swift in Sources */,
+				B0A0000000000000A0000033 /* PhotoCaptureView.swift in Sources */,
+				B0A0000000000000A0000034 /* CheckoutView.swift in Sources */,
+				B0A0000000000000A0000035 /* PaymentMethodPicker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E0X0000000000000X0000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E0X0000000000000X0000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E0X0000000000000X0000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FabricDesigner/Resources/FabricDesigner.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FabricDesigner/Resources/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.atelier.fabricdesigner";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E0X0000000000000X0000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FabricDesigner/Resources/FabricDesigner.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = FabricDesigner/Resources/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.atelier.fabricdesigner";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E0L0000000000000L0000001 /* Build configuration list for PBXProject "FabricDesigner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0X0000000000000X0000001 /* Debug */,
+				E0X0000000000000X0000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E0L0000000000000L0000002 /* Build configuration list for PBXNativeTarget "FabricDesigner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0X0000000000000X0000003 /* Debug */,
+				E0X0000000000000X0000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E0J0000000000000J0000001 /* Project object */;
+}

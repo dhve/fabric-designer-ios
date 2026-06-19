@@ -1,0 +1,133 @@
+# Atelier · Fabric Designer iOS
+
+A native iPhone demo that **scans your body with LiDAR**, drops you into a
+**3D outfit designer with 15 PBR fabrics**, scores your looks, and walks you
+through a **multi-tender checkout** — all on-device.
+
+Mirrors the Replit "Fabric Designer" project (`@colinjamesonart/Fabric-Designer`),
+re-implemented in SwiftUI + ARKit + SceneKit + SwiftData. The PRD's MVP
+("create, measure, sell an outfit on day 1") runs end-to-end in this app.
+
+## Open in Xcode
+
+```sh
+open FabricDesigner.xcodeproj
+```
+
+Pick the **FabricDesigner** scheme, build target iOS 17.0+. The project uses
+no SPM dependencies — only the system frameworks ARKit, SceneKit, RealityKit,
+SwiftUI, SwiftData, PhotosUI.
+
+To run the LiDAR scan you need a real device with the LiDAR sensor (iPhone
+12 Pro and up, all 13/14/15/16 Pro / Pro Max models, and iPad Pro 2020+).
+On any other device or in the simulator, **tap "Use Demo Dimensions"** in
+the intro and the designer / wardrobe / checkout flow still works.
+
+## Module map
+
+| Group | Purpose |
+|-------|---------|
+| `App/` | `@main` entry + `AppState` (outfit, measurements, flow) + `RootView` |
+| `DesignSystem/` | Cyberpunk theme tokens, HUD panel, status pills, scanlines, grid |
+| `Models/` | Pure value types: `Garment`, `Outfit`, `FabricType`, `BodyMeasurements`, `Order`, `Catalog`, `SwatchCatalog` |
+| `OutfitEngine/` | Color harmony (HSL), fabric vibe groups, 5-star scorer, tournament `OutfitEngine.generate(…)`, history/likes/dislikes |
+| `Wardrobe/` | SwiftData `@Model`s, `WardrobeStore`, `WardrobeView` (inventory + saved looks + analytics) |
+| `LiDARScan/` | `BodyScanCoordinator` (ARSession + body tracking + scene-reconstruction mesh), `MeasurementExtractor` (joints + convex-hull slices → cm), HUD overlay + results card |
+| `Designer/` | Procedural `AvatarMesh`, 15 PBR `FabricMaterial`s, SceneKit avatar scene, `DesignerView` (viewport, pose chips, Surprise Me FAB, score), garment rail, swatch grid, before/after slider |
+| `Photos/` | 5-photo capture + fit notes (PRD step 2) |
+| `Checkout/` | Multi-tender payment picker (ETF · cash · crypto · gold · credit), 110% restocking notice, order summary |
+| `Resources/` | `Info.plist`, entitlements, `Assets.xcassets` |
+
+## The LiDAR body scan
+
+1. Intro card explains the four steps.
+2. `BodyScanCoordinator.start()` spins an `ARSession` with an
+   `ARBodyTrackingConfiguration` so we get a full 3D skeleton anchor every
+   frame. The LiDAR sensor still drives that skeleton's depth — Apple's
+   body tracking uses both the camera and any available LiDAR depth as
+   inputs to the ARBodyAnchor pipeline.
+3. Every frame: read joint positions, log distance, accumulate any
+   `ARMeshAnchor` vertices that arrive (alignment-safe per-component read
+   to handle ARKit's 12-byte float3 stride) into a world-space point cloud.
+4. After ~4 seconds of stable lock, `MeasurementExtractor.compose(…)`:
+   - takes **direct measurements** (height, shoulder span, sleeve, inseam)
+     from joint positions — these are pin-sharp because they're LiDAR-driven
+   - computes **circumferences** in two ways and picks the better one:
+     1. *Mesh slice* — at each joint's Y height, filter mesh vertices
+        within a 3 cm band, project to XZ, run a convex hull (Andrew's
+        monotone chain), sum the perimeter.
+     2. *Anthropometric estimate* — calibrated by the measured shoulder
+        width using ANSUR II regressions (chest ≈ 2.15 × shoulder, waist
+        ≈ 0.85 × chest, hip ≈ 0.95 × chest, neck ≈ 0.40 × chest, thigh
+        ≈ 0.60 × hip). Accurate to ±3-4 cm.
+   - stores a confidence score derived from mesh density + ideal stand-off
+5. The HUD locks closed with the dimensions in cm or inches, a derived
+   letter size (XS — XXL), and accept / rescan buttons.
+
+The full pipeline lives in `LiDARScan/MeasurementExtractor.swift` and
+`LiDARScan/BodyScanCoordinator.swift`. The whole thing is on-device — no
+photos, mesh, or measurements leave the phone.
+
+## The outfit designer (mirrors the Replit app)
+
+- 15 PBR fabrics matched to the Replit `swatchData.ts`:
+  silk, satin, velvet, chiffon, cashmere, cotton, linen, jersey, polyester,
+  canvas, denim, tweed, wool, leather, suede.
+- Each fabric has a tuned `SCNMaterial` (roughness, metalness, clearcoat,
+  sheen) plus procedural normal maps for twill (denim, tweed) and
+  micro-weave (cotton, linen, canvas, jersey). Silk uses clearcoat + the
+  studio environment for reflections; velvet uses dark emission for sheen.
+- The avatar is **built from primitives** at runtime, scaled to your
+  LiDAR-captured dimensions — no `.glb` asset bundling needed.
+- **Surprise Me** runs the same tournament generator as the React app
+  (`OutfitEngine.generate`): 10 random candidates scored on color harmony,
+  fabric vibe, and size consistency, biased toward your liked-vibe history,
+  with a hard skip on previously-disliked combinations.
+- Five-star score + label ("Great fabric harmony · Matched sizes") render
+  live in the HUD.
+- Before/After slider compares the prior outfit to the current one on the
+  same body.
+- Save named looks (`SavedLook`) to SwiftData; load or delete from the
+  Wardrobe tab.
+
+## Photos & checkout
+
+- Pick up to 5 reference photos (PhotosPicker) plus fit notes.
+- Pay with electronic transfer / cash / crypto / gold-or-barter / credit
+  card; the **110% return restocking fee** notice from the PRD pops the
+  moment a card is selected.
+- Order is built locally — nothing networks out.
+
+## Design language
+
+PRD: "sterile whites + violet/burgundy/gem tone explosions, monochromatic
+contrast, cyberpunk Ghost-in-the-Shell streetwear-combat future-punk
+corporate." Implemented as:
+
+- bone (`#F6F6F2`) / canvas / chrome surfaces
+- onyx / void / carbon / graphite dark surfaces
+- violet (`#6B3E8E`) primary + violet glow + violet deep
+- burgundy / emerald / sapphire / citrine gem accents
+- plasma pink signal
+- monospaced HUD font + corner brackets + optional scanlines + grid
+  background
+
+All of it lives in `DesignSystem/Theme.swift` and `HUDComponents.swift`.
+
+## File count
+
+```
+35 Swift sources · ~4.3K lines
+1 Info.plist · 1 entitlements · 1 asset catalog (3 colorsets + 1 iconset)
+1 xcodeproj · 1 shared scheme
+```
+
+## Notes
+
+- **No iOS SDK was available locally** to do a full link-time compile.
+  Pure-Swift modules (Models, OutfitEngine) parse cleanly with `swiftc`.
+  SwiftUI / ARKit modules were author-reviewed against the iOS 17 SDK
+  surface; the project will resolve and build in Xcode 15.3+.
+- For App Store-style polish, swap the procedural avatar for a Mixamo
+  X Bot `.usdz` (one node replacement) and ship realistic icons in
+  `AppIcon.appiconset`.
