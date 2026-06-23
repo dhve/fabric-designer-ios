@@ -4,6 +4,7 @@ import SwiftUI
 /// hands them across the designer / photos / checkout pipeline.
 public struct RootView: View {
     @EnvironmentObject private var app: AppState
+    @State private var showManualMeasurements = false
 
     public var body: some View {
         ZStack {
@@ -26,6 +27,15 @@ public struct RootView: View {
         }
         .transition(.opacity)
         .animation(.easeInOut(duration: 0.25), value: app.flow)
+        .sheet(isPresented: $showManualMeasurements) {
+            ManualMeasurementView(prefill: app.measurements) { measurements in
+                app.acceptMeasurements(measurements)
+                showManualMeasurements = false
+                app.flow = .designer
+            } onCancel: {
+                showManualMeasurements = false
+            }
+        }
     }
 
     private var designerTabs: some View {
@@ -56,8 +66,9 @@ public struct RootView: View {
     private var scanQuickAccess: some View {
         ScanIntroView(
             onBeginScan: { app.flow = .scanning },
+            onEnterManual: { showManualMeasurements = true },
             onUseDemo: {
-                app.acceptMeasurements(.demo)
+                app.acceptMeasurements(.demo.withSource(.demo, confidence: 0.0))
                 app.flow = .designer
             }
         )
@@ -103,7 +114,7 @@ public struct IntroView: View {
                     app.flow = .scanIntro
                 }
                 HUDButton("Skip scan — use demo dimensions", style: .ghost) {
-                    app.acceptMeasurements(.demo)
+                    app.acceptMeasurements(.demo.withSource(.demo, confidence: 0.0))
                     app.flow = .designer
                 }
                 .foregroundStyle(Theme.bone.opacity(0.85))

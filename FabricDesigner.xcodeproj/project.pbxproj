@@ -42,6 +42,9 @@
 		B0A0000000000000A0000033 /* PhotoCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000033 /* PhotoCaptureView.swift */; };
 		B0A0000000000000A0000034 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000034 /* CheckoutView.swift */; };
 		B0A0000000000000A0000035 /* PaymentMethodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000035 /* PaymentMethodPicker.swift */; };
+		B0A0000000000000A0000036 /* ManualMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000036 /* ManualMeasurementView.swift */; };
+		B0A0000000000000A0000037 /* OrderPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000037 /* OrderPDFGenerator.swift */; };
+		B0A0000000000000A0000038 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0000000000000A0000038 /* ShareSheet.swift */; };
 		B0C0000000000000C0000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0C0000000000000C0000003 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +84,9 @@
 		F0A0000000000000A0000033 /* PhotoCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureView.swift; sourceTree = "<group>"; };
 		F0A0000000000000A0000034 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 		F0A0000000000000A0000035 /* PaymentMethodPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodPicker.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000036 /* ManualMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualMeasurementView.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000037 /* OrderPDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPDFGenerator.swift; sourceTree = "<group>"; };
+		F0A0000000000000A0000038 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		F0C0000000000000C0000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0C0000000000000C0000002 /* FabricDesigner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FabricDesigner.entitlements; sourceTree = "<group>"; };
 		F0C0000000000000C0000003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 				E0G0000000000000G000000A /* Designer */,
 				E0G0000000000000G000000B /* Photos */,
 				E0G0000000000000G000000C /* Checkout */,
+				E0G0000000000000G000000E /* Orders */,
 				E0G0000000000000G000000D /* Resources */,
 			);
 			path = FabricDesigner;
@@ -193,6 +200,7 @@
 				F0A0000000000000A0000022 /* MeasurementExtractor.swift */,
 				F0A0000000000000A0000023 /* ScanResultsView.swift */,
 				F0A0000000000000A0000024 /* ScanIntroView.swift */,
+				F0A0000000000000A0000036 /* ManualMeasurementView.swift */,
 			);
 			path = LiDARScan;
 			sourceTree = "<group>";
@@ -227,6 +235,15 @@
 				F0A0000000000000A0000035 /* PaymentMethodPicker.swift */,
 			);
 			path = Checkout;
+			sourceTree = "<group>";
+		};
+		E0G0000000000000G000000E /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				F0A0000000000000A0000037 /* OrderPDFGenerator.swift */,
+				F0A0000000000000A0000038 /* ShareSheet.swift */,
+			);
+			path = Orders;
 			sourceTree = "<group>";
 		};
 		E0G0000000000000G000000D /* Resources */ = {
@@ -343,6 +360,9 @@
 				B0A0000000000000A0000033 /* PhotoCaptureView.swift in Sources */,
 				B0A0000000000000A0000034 /* CheckoutView.swift in Sources */,
 				B0A0000000000000A0000035 /* PaymentMethodPicker.swift in Sources */,
+				B0A0000000000000A0000036 /* ManualMeasurementView.swift in Sources */,
+				B0A0000000000000A0000037 /* OrderPDFGenerator.swift in Sources */,
+				B0A0000000000000A0000038 /* ShareSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,9 +495,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FabricDesigner/Resources/FabricDesigner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = "JR38H375HR";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = FabricDesigner/Resources/Info.plist;
@@ -488,7 +508,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.atelier.fabricdesigner";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fabricdesigner.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -503,9 +523,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FabricDesigner/Resources/FabricDesigner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = "JR38H375HR";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = FabricDesigner/Resources/Info.plist;
@@ -516,7 +536,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.atelier.fabricdesigner";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fabricdesigner.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

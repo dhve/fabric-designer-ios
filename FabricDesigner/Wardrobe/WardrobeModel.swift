@@ -74,6 +74,7 @@ import SwiftData
     public var neckCircumferenceCM: Double
     public var thighCircumferenceCM: Double
     public var confidence: Double
+    public var sourceRaw: String?
 
     public init(from m: BodyMeasurements) {
         self.capturedAt = m.capturedAt
@@ -87,6 +88,7 @@ import SwiftData
         self.neckCircumferenceCM = m.neckCircumferenceCM
         self.thighCircumferenceCM = m.thighCircumferenceCM
         self.confidence = m.confidence
+        self.sourceRaw = m.source.rawValue
     }
 
     public var asMeasurements: BodyMeasurements {
@@ -101,7 +103,8 @@ import SwiftData
             neckCircumferenceCM: neckCircumferenceCM,
             thighCircumferenceCM: thighCircumferenceCM,
             capturedAt: capturedAt,
-            confidence: confidence
+            confidence: confidence,
+            source: sourceRaw.flatMap(MeasurementSource.init(rawValue:)) ?? .cameraEstimate
         )
     }
 }

@@ -23,13 +23,13 @@ public enum FabricMaterial {
         case .silk:
             m.roughness.contents = 0.18
             m.metalness.contents = 0.05
-            m.clearcoat.contents = 0.35
-            m.clearcoatRoughness.contents = 0.10
+            m.clearCoat.contents = 0.35
+            m.clearCoatRoughness.contents = 0.10
         case .satin:
             m.roughness.contents = 0.12
             m.metalness.contents = 0.20
-            m.clearcoat.contents = 0.55
-            m.clearcoatRoughness.contents = 0.05
+            m.clearCoat.contents = 0.55
+            m.clearCoatRoughness.contents = 0.05
         case .velvet:
             m.roughness.contents = 0.95
             m.metalness.contents = 0.0
@@ -62,7 +62,7 @@ public enum FabricMaterial {
         case .polyester:
             m.roughness.contents = 0.45
             m.metalness.contents = 0.05
-            m.clearcoat.contents = 0.10
+            m.clearCoat.contents = 0.10
         case .canvas:
             m.roughness.contents = 0.95
             m.metalness.contents = 0.0
@@ -85,8 +85,8 @@ public enum FabricMaterial {
         case .leather:
             m.roughness.contents = 0.45
             m.metalness.contents = 0.0
-            m.clearcoat.contents = 0.40
-            m.clearcoatRoughness.contents = 0.25
+            m.clearCoat.contents = 0.40
+            m.clearCoatRoughness.contents = 0.25
         case .suede:
             m.roughness.contents = 0.85
             m.metalness.contents = 0.0

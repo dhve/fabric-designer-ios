@@ -10,6 +10,8 @@ public struct BodyScanView: View {
     public var onComplete: (BodyMeasurements) -> Void
     public var onCancel:   () -> Void
     @State private var unit: LengthUnit = .cm
+    @State private var manualPrefill: BodyMeasurements?
+    @State private var showManualMeasurements = false
 
     public init(
         onComplete: @escaping (BodyMeasurements) -> Void,
@@ -37,7 +39,11 @@ public struct BodyScanView: View {
                 ScanResultsView(
                     measurements: measurements,
                     unit: $unit,
-                    onAccept: { onComplete(measurements) },
+                    onAccept: { onComplete(scanAccepted(measurements)) },
+                    onManual: {
+                        manualPrefill = measurements
+                        showManualMeasurements = true
+                    },
                     onRescan: { coordinator.start() }
                 )
                 .transition(.opacity.combined(with: .move(edge: .bottom)))
@@ -50,6 +56,14 @@ public struct BodyScanView: View {
         .onAppear { coordinator.start() }
         .onDisappear { coordinator.stop() }
         .preferredColorScheme(.dark)
+        .sheet(isPresented: $showManualMeasurements) {
+            ManualMeasurementView(prefill: manualPrefill) { measurements in
+                showManualMeasurements = false
+                onComplete(measurements)
+            } onCancel: {
+                showManualMeasurements = false
+            }
+        }
     }
 
     // MARK: - HUD pieces
@@ -147,6 +161,10 @@ public struct BodyScanView: View {
             HStack(spacing: 12) {
                 HUDButton("Cancel", style: .ghost, action: onCancel)
                     .foregroundStyle(Theme.bone)
+                HUDButton("Enter Manually", icon: "ruler", style: .secondary) {
+                    manualPrefill = nil
+                    showManualMeasurements = true
+                }
                 HUDButton("Demo Scan", icon: "wand.and.stars", style: .primary) {
                     coordinator.commitDemoScan()
                 }
@@ -155,6 +173,11 @@ public struct BodyScanView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.ultraThinMaterial)
+    }
+
+    private func scanAccepted(_ measurements: BodyMeasurements) -> BodyMeasurements {
+        let source: MeasurementSource = coordinator.supportsLiDAR ? .lidarEnhanced : .cameraEstimate
+        return measurements.withSource(source)
     }
 }
 
