@@ -1,8 +1,8 @@
 import SwiftUI
 
-/// Final step of the PRD flow — multi-tender checkout + shipping notes.
-/// In demo mode this records the order locally and shows a confirmation;
-/// no card numbers, network requests, or PII leaves the device.
+/// Final demo handoff step: builds a tailor-ready order/spec PDF with optional
+/// shipping and payment notes. No card numbers, network requests, or PII leave
+/// the device.
 public struct CheckoutView: View {
     @EnvironmentObject private var app: AppState
     @State private var payment: PaymentMethod = .crypto
@@ -44,10 +44,10 @@ public struct CheckoutView: View {
             Text("MODULE · 04")
                 .font(HUDFont.monoXS).tracking(2.5)
                 .foregroundStyle(Theme.violet)
-            Text("Checkout")
+            Text("Order PDF")
                 .font(HUDFont.displayHeavy)
                 .foregroundStyle(Theme.textPrimary)
-            Text("One outfit, locked to your dimensions and designer credit. Pick a tender that matches your tribe.")
+            Text("Generate a tailor-ready spec sheet from the selected look and trusted measurements. Payment remains demo-only.")
                 .font(HUDFont.body)
                 .foregroundStyle(Theme.textSecondary)
         }
@@ -84,7 +84,7 @@ public struct CheckoutView: View {
     private var shippingForm: some View {
         HUDPanel(tone: .light) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("SHIP TO").font(HUDFont.monoXS).tracking(1.6).foregroundStyle(Theme.violet)
+                Text("SHIP TO · OPTIONAL FOR DEMO").font(HUDFont.monoXS).tracking(1.6).foregroundStyle(Theme.violet)
                 field("Full name", text: $shipping.fullName)
                 field("Street 1",  text: $shipping.line1)
                 field("Street 2",  text: $shipping.line2)
@@ -177,7 +177,7 @@ public struct CheckoutView: View {
 
     private var actions: some View {
         VStack(spacing: 10) {
-            HUDButton("Place Order", icon: "checkmark.seal.fill", style: .primary) {
+            HUDButton("Generate Order PDF", icon: "doc.richtext", style: .primary) {
                 let order = Order(
                     outfit: app.currentOutfit,
                     measurements: app.measurements,
@@ -197,14 +197,14 @@ public struct CheckoutView: View {
                 }
                 confirmed = true
             }
-            .disabled(!canPlaceOrder)
-            .opacity(canPlaceOrder ? 1 : 0.45)
+            .disabled(!canGeneratePDF)
+            .opacity(canGeneratePDF ? 1 : 0.45)
             HUDButton("Back", style: .ghost) { app.flow = .photos }
         }
     }
 
-    private var canPlaceOrder: Bool {
-        shipping.isComplete && (app.measurements?.isTailorReady == true)
+    private var canGeneratePDF: Bool {
+        app.measurements?.isTailorReady == true
     }
 
     private var confirmation: some View {
@@ -212,8 +212,8 @@ public struct CheckoutView: View {
             Image(systemName: "checkmark.seal.fill")
                 .font(.system(size: 48, weight: .bold))
                 .foregroundStyle(Theme.violet)
-            Text("Order placed").font(HUDFont.displayHeavy).foregroundStyle(Theme.textPrimary)
-            Text("The order PDF was generated on device. No payment was charged and no data was sent off-device.")
+            Text("PDF ready").font(HUDFont.displayHeavy).foregroundStyle(Theme.textPrimary)
+            Text("The order/spec PDF was generated on device. No payment was charged and no data was sent off-device.")
                 .font(HUDFont.body).foregroundStyle(Theme.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
