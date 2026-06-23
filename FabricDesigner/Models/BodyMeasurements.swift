@@ -1,5 +1,21 @@
 import Foundation
 
+public enum MeasurementSource: String, Codable, CaseIterable, Sendable {
+    case manual
+    case cameraEstimate
+    case lidarEnhanced
+    case demo
+
+    public var displayName: String {
+        switch self {
+        case .manual: return "Manual"
+        case .cameraEstimate: return "Camera estimate"
+        case .lidarEnhanced: return "LiDAR enhanced"
+        case .demo: return "Demo"
+        }
+    }
+}
+
 /// Output of a LiDAR body scan. Every measurement is stored in centimetres;
 /// `formatted(_:)` converts to inches when the user prefers imperial.
 public struct BodyMeasurements: Codable, Hashable, Sendable {
@@ -17,6 +33,7 @@ public struct BodyMeasurements: Codable, Hashable, Sendable {
     /// Confidence reported by the scanner — driven by the number of
     /// mesh anchors collected and how stable the body anchor stayed.
     public var confidence: Double
+    public var source: MeasurementSource
 
     public init(
         heightCM: Double,
@@ -29,7 +46,8 @@ public struct BodyMeasurements: Codable, Hashable, Sendable {
         neckCircumferenceCM: Double,
         thighCircumferenceCM: Double,
         capturedAt: Date = Date(),
-        confidence: Double = 0
+        confidence: Double = 0,
+        source: MeasurementSource = .cameraEstimate
     ) {
         self.heightCM = heightCM
         self.shoulderWidthCM = shoulderWidthCM
@@ -42,6 +60,7 @@ public struct BodyMeasurements: Codable, Hashable, Sendable {
         self.thighCircumferenceCM = thighCircumferenceCM
         self.capturedAt = capturedAt
         self.confidence = confidence
+        self.source = source
     }
 
     /// Average adult demo profile used as a baseline / simulator fallback.
@@ -55,7 +74,8 @@ public struct BodyMeasurements: Codable, Hashable, Sendable {
         inseamCM: 81.0,
         neckCircumferenceCM: 39.0,
         thighCircumferenceCM: 56.0,
-        confidence: 0.0
+        confidence: 0.0,
+        source: .demo
     )
 
     /// Map circumferences onto a standard letter size for the wardrobe.
@@ -70,6 +90,52 @@ public struct BodyMeasurements: Codable, Hashable, Sendable {
         default:      return "XXL"
         }
     }
+
+    public var validationIssues: [String] {
+        MeasurementRule.all.compactMap { rule in
+            rule.contains(rule.value(in: self)) ? nil : rule.message
+        }
+    }
+
+    public var isTailorReady: Bool { validationIssues.isEmpty }
+
+    public func withSource(_ source: MeasurementSource, confidence: Double? = nil) -> BodyMeasurements {
+        var copy = self
+        copy.source = source
+        copy.confidence = confidence ?? self.confidence
+        copy.capturedAt = Date()
+        return copy
+    }
+}
+
+public struct MeasurementRule: Hashable {
+    public var label: String
+    public var keyPath: WritableKeyPath<BodyMeasurements, Double>
+    public var range: ClosedRange<Double>
+
+    public var message: String {
+        "\(label) must be \(Int(range.lowerBound))-\(Int(range.upperBound)) cm"
+    }
+
+    public func value(in measurements: BodyMeasurements) -> Double {
+        measurements[keyPath: keyPath]
+    }
+
+    public func contains(_ value: Double) -> Bool {
+        range.contains(value)
+    }
+
+    public static let all: [MeasurementRule] = [
+        MeasurementRule(label: "Height", keyPath: \.heightCM, range: 90...230),
+        MeasurementRule(label: "Shoulder", keyPath: \.shoulderWidthCM, range: 25...80),
+        MeasurementRule(label: "Sleeve", keyPath: \.sleeveLengthCM, range: 30...100),
+        MeasurementRule(label: "Chest", keyPath: \.chestCircumferenceCM, range: 50...180),
+        MeasurementRule(label: "Waist", keyPath: \.waistCircumferenceCM, range: 40...170),
+        MeasurementRule(label: "Hip", keyPath: \.hipCircumferenceCM, range: 50...190),
+        MeasurementRule(label: "Inseam", keyPath: \.inseamCM, range: 40...120),
+        MeasurementRule(label: "Neck", keyPath: \.neckCircumferenceCM, range: 20...70),
+        MeasurementRule(label: "Thigh", keyPath: \.thighCircumferenceCM, range: 25...100)
+    ]
 }
 
 public enum LengthUnit: String, CaseIterable, Sendable {

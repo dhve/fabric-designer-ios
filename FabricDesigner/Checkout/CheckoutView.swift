@@ -9,12 +9,16 @@ public struct CheckoutView: View {
     @State private var shipping = ShippingInfo()
     @State private var confirmed = false
     @State private var basePrice: Double = 489.0
+    @State private var pdfURL: URL?
+    @State private var pdfError: String?
+    @State private var showMeasurementEditor = false
 
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 header
                 outfitSummary
+                measurementsCard
                 shippingForm
                 PaymentMethodPicker(selection: $payment)
                 totalsCard
@@ -25,6 +29,14 @@ public struct CheckoutView: View {
         }
         .background(Theme.bone.ignoresSafeArea())
         .sheet(isPresented: $confirmed) { confirmation }
+        .sheet(isPresented: $showMeasurementEditor) {
+            ManualMeasurementView(title: "Edit Measurements", prefill: app.measurements) { measurements in
+                app.acceptMeasurements(measurements)
+                showMeasurementEditor = false
+            } onCancel: {
+                showMeasurementEditor = false
+            }
+        }
     }
 
     private var header: some View {
@@ -89,6 +101,47 @@ public struct CheckoutView: View {
         }
     }
 
+    private var measurementsCard: some View {
+        HUDPanel(tone: .light) {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Text("MEASUREMENTS")
+                        .font(HUDFont.monoXS)
+                        .tracking(1.6)
+                        .foregroundStyle(Theme.violet)
+                    Spacer()
+                    Button {
+                        showMeasurementEditor = true
+                    } label: {
+                        StatusPill(app.measurements == nil ? "ENTER" : "EDIT", color: Theme.violet, icon: "ruler")
+                    }
+                    .buttonStyle(.plain)
+                }
+
+                if let m = app.measurements {
+                    HStack {
+                        StatusPill(m.source.displayName.uppercased(), color: Theme.violet, icon: "checkmark.seal")
+                        StatusPill("CONF \(Int(m.confidence * 100))%", color: m.confidence >= 0.8 ? Theme.emerald : Theme.warning, icon: "gauge")
+                    }
+                    HStack {
+                        StatusPill("CHEST \(Int(m.chestCircumferenceCM))CM", color: Theme.bone, icon: "ruler")
+                        StatusPill("WAIST \(Int(m.waistCircumferenceCM))CM", color: Theme.bone, icon: "ruler")
+                        StatusPill("INSEAM \(Int(m.inseamCM))CM", color: Theme.bone, icon: "ruler")
+                    }
+                    if !m.validationIssues.isEmpty {
+                        Text(m.validationIssues.joined(separator: "\n"))
+                            .font(HUDFont.body)
+                            .foregroundStyle(Theme.danger)
+                    }
+                } else {
+                    Text("Manual measurements are required before generating the tailor order PDF.")
+                        .font(HUDFont.body)
+                        .foregroundStyle(Theme.textSecondary)
+                }
+            }
+        }
+    }
+
     private func field(_ placeholder: String, text: Binding<String>) -> some View {
         TextField(placeholder, text: text)
             .textFieldStyle(.plain)
@@ -135,10 +188,23 @@ public struct CheckoutView: View {
                     basePriceUSD: basePrice
                 )
                 app.lastOrder = order
+                do {
+                    pdfURL = try OrderPDFGenerator.generate(order: order)
+                    pdfError = nil
+                } catch {
+                    pdfURL = nil
+                    pdfError = error.localizedDescription
+                }
                 confirmed = true
             }
+            .disabled(!canPlaceOrder)
+            .opacity(canPlaceOrder ? 1 : 0.45)
             HUDButton("Back", style: .ghost) { app.flow = .photos }
         }
+    }
+
+    private var canPlaceOrder: Bool {
+        shipping.isComplete && (app.measurements?.isTailorReady == true)
     }
 
     private var confirmation: some View {
@@ -147,10 +213,27 @@ public struct CheckoutView: View {
                 .font(.system(size: 48, weight: .bold))
                 .foregroundStyle(Theme.violet)
             Text("Order placed").font(HUDFont.displayHeavy).foregroundStyle(Theme.textPrimary)
-            Text("This is a demo — no payment was charged and no data was sent off-device.")
+            Text("The order PDF was generated on device. No payment was charged and no data was sent off-device.")
                 .font(HUDFont.body).foregroundStyle(Theme.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
+            if let pdfURL {
+                ShareLink(item: pdfURL) {
+                    Label("Share / Email Order PDF", systemImage: "square.and.arrow.up")
+                        .font(HUDFont.label)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .background(Theme.onyx)
+                        .foregroundStyle(Theme.bone)
+                }
+                .padding(.horizontal, 32)
+            } else if let pdfError {
+                Text("PDF generation failed: \(pdfError)")
+                    .font(HUDFont.body)
+                    .foregroundStyle(Theme.danger)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 24)
+            }
             HUDButton("Done", icon: "checkmark", style: .primary) {
                 confirmed = false
                 app.resetFlow()

@@ -7,6 +7,7 @@ public struct ScanResultsView: View {
     public let measurements: BodyMeasurements
     @Binding public var unit: LengthUnit
     public let onAccept: () -> Void
+    public let onManual: () -> Void
     public let onRescan: () -> Void
 
     public var body: some View {
@@ -74,13 +75,26 @@ public struct ScanResultsView: View {
                            color: confidenceColor,
                            icon: "checkmark.seal")
             }
+            if !canAcceptScan {
+                Text("Scan confidence is too low for tailor measurements. Rescan or enter measurements manually.")
+                    .font(HUDFont.body)
+                    .foregroundStyle(Theme.warning)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
             HStack(spacing: 10) {
                 HUDButton("Rescan", icon: "arrow.clockwise", style: .ghost, action: onRescan)
                     .foregroundStyle(Theme.bone)
                 HUDButton("Use Dimensions", icon: "checkmark", style: .primary, action: onAccept)
+                    .disabled(!canAcceptScan)
+                    .opacity(canAcceptScan ? 1 : 0.45)
             }
+            HUDButton("Enter Manually", icon: "ruler", style: .secondary, action: onManual)
         }
         .padding(16)
+    }
+
+    private var canAcceptScan: Bool {
+        measurements.confidence >= 0.80 && measurements.isTailorReady
     }
 
     private var confidenceColor: Color {

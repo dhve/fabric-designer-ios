@@ -52,6 +52,22 @@ public enum PaymentMethod: String, CaseIterable, Codable, Identifiable, Sendable
     public var carriesRestockingNotice: Bool { self == .creditCard }
 }
 
+public enum PaymentStatus: String, CaseIterable, Codable, Sendable {
+    case pending
+    case verified
+    case waived
+    case failed
+
+    public var displayName: String {
+        switch self {
+        case .pending: return "Pending"
+        case .verified: return "Verified"
+        case .waived: return "Waived"
+        case .failed: return "Failed"
+        }
+    }
+}
+
 public struct ShippingInfo: Codable, Hashable, Sendable {
     public var fullName: String = ""
     public var line1: String = ""
@@ -68,6 +84,7 @@ public struct ShippingInfo: Codable, Hashable, Sendable {
 }
 
 public struct Order: Codable, Hashable, Sendable {
+    public var id: String
     public var outfit: Outfit
     public var measurements: BodyMeasurements?
     public var photoCount: Int
@@ -76,12 +93,18 @@ public struct Order: Codable, Hashable, Sendable {
     public var shipping: ShippingInfo
     public var basePriceUSD: Double
     public var createdAt: Date
+    public var cryptoNetwork: String
+    public var receivingAccount: String
+    public var transactionHash: String
+    public var paymentVerificationNote: String
+    public var paymentStatus: PaymentStatus
 
     public var totalUSD: Double {
         basePriceUSD * paymentMethod.restockingMultiplier
     }
 
     public init(
+        id: String = String(UUID().uuidString.prefix(8)).uppercased(),
         outfit: Outfit,
         measurements: BodyMeasurements?,
         photoCount: Int,
@@ -89,8 +112,14 @@ public struct Order: Codable, Hashable, Sendable {
         paymentMethod: PaymentMethod,
         shipping: ShippingInfo,
         basePriceUSD: Double,
-        createdAt: Date = Date()
+        createdAt: Date = Date(),
+        cryptoNetwork: String = "",
+        receivingAccount: String = "",
+        transactionHash: String = "",
+        paymentVerificationNote: String = "",
+        paymentStatus: PaymentStatus = .pending
     ) {
+        self.id = id
         self.outfit = outfit
         self.measurements = measurements
         self.photoCount = photoCount
@@ -99,5 +128,10 @@ public struct Order: Codable, Hashable, Sendable {
         self.shipping = shipping
         self.basePriceUSD = basePriceUSD
         self.createdAt = createdAt
+        self.cryptoNetwork = cryptoNetwork
+        self.receivingAccount = receivingAccount
+        self.transactionHash = transactionHash
+        self.paymentVerificationNote = paymentVerificationNote
+        self.paymentStatus = paymentStatus
     }
 }

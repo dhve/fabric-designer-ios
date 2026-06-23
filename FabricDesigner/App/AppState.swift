@@ -109,8 +109,10 @@ public final class AppState: ObservableObject {
     // MARK: - Measurements
 
     public func acceptMeasurements(_ m: BodyMeasurements) {
-        measurements = m
-        wardrobe.storeMeasurements(m)
+        let source = m.source == .demo ? MeasurementSource.demo : m.source
+        let captured = m.withSource(source, confidence: m.confidence)
+        measurements = captured
+        wardrobe.storeMeasurements(captured)
     }
 
     // MARK: - Flow

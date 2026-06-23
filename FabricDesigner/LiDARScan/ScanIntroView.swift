@@ -5,10 +5,16 @@ import SwiftUI
 /// LiDAR isn't available on their device.
 public struct ScanIntroView: View {
     public var onBeginScan: () -> Void
+    public var onEnterManual: () -> Void
     public var onUseDemo:   () -> Void
 
-    public init(onBeginScan: @escaping () -> Void, onUseDemo: @escaping () -> Void) {
+    public init(
+        onBeginScan: @escaping () -> Void,
+        onEnterManual: @escaping () -> Void,
+        onUseDemo: @escaping () -> Void
+    ) {
         self.onBeginScan = onBeginScan
+        self.onEnterManual = onEnterManual
         self.onUseDemo = onUseDemo
     }
 
@@ -86,6 +92,7 @@ public struct ScanIntroView: View {
     private var actions: some View {
         VStack(spacing: 12) {
             HUDButton("Begin Scan", icon: "viewfinder", style: .primary, action: onBeginScan)
+            HUDButton("Enter Measurements Manually", icon: "ruler", style: .secondary, action: onEnterManual)
             HUDButton("Use Demo Dimensions", icon: "wand.and.stars", style: .ghost, action: onUseDemo)
                 .foregroundStyle(Theme.bone.opacity(0.85))
         }
